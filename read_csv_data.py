@@ -5,8 +5,11 @@
 
 import pandas as pd
 
-# url: https://dados.cvm.gov.br/dados/FI/DOC/INF_DIARIO/DADOS/
-daily_report = pd.read_csv("data/if_daily_report/202312/inf_diario_fi_202312.csv",sep=";")
+pd.set_option('max_colwidth', 800)
+
+# DAILY REPORT
+# url: https://dados.cvm.gov.br/dados/FI/DOC/INF_DIARIO/DADOS/inf_diario_fi_202312.zip
+daily_report = pd.read_csv("data/if_daily_report/inf_diario_fi_202312.csv",sep=";",encoding='ISO-8859-1')
 
 # captação do dia - CAPT_DIA
 # cnpj do fundo - CNPJ_FUNDO 
@@ -19,3 +22,33 @@ daily_report = pd.read_csv("data/if_daily_report/202312/inf_diario_fi_202312.csv
 # valor total da carteira - VL_TOTAL
 
 csn_daily_report = daily_report.loc[daily_report['CNPJ_FUNDO']=='68.670.512/0001-07']
+
+# 
+# url: https://dados.cvm.gov.br/dados/FI/CAD/DADOS/cad_fi.csv
+# url_dictionary: https://dados.cvm.gov.br/dados/FI/CAD/META/meta_cad_fi.txt
+
+cad = pd.read_csv("data/if_cad/cad_fi.csv",sep=";",encoding='ISO-8859-1')
+
+csn_cad = cad.loc[cad['CNPJ_FUNDO']=='68.670.512/0001-07']
+
+# data de patrimônio líquido menos atualizada que informe diário
+
+# url: https://dados.cvm.gov.br/dados/FI/DOC/LAMINA/DADOS/lamina_fi_202311.zip
+# url_dictionary: https://dados.cvm.gov.br/dados/FI/DOC/LAMINA/META/meta_lamina_fi_txt.zip
+
+lamina_202311 = pd.read_csv("data/if_lamina/lamina_fi_202310.csv",sep=";",encoding='ISO-8859-1'
+                             , usecols=['CNPJ_FUNDO','DENOM_SOCIAL','NM_FANTASIA',
+                                        'TAXA_ADM','TAXA_PERFM','PR_PL_DESPESA','VL_PATRIM_LIQ','CLASSE_RISCO_ADMIN',
+                                        'QT_ANO_PERDA','PR_VARIACAO_PERFM','CALC_RENTAB_FUNDO'])
+csn_lamina_2023_11 = lamina_202311.loc[lamina_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+
+lamina_carteira_202311 = pd.read_csv("data/if_lamina/lamina_fi_carteira_202311.csv",sep=";",encoding='ISO-8859-1')
+csn_lamina_carteira_202311 = lamina_carteira_202311.loc[lamina_carteira_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+
+# rentabilidade histórica
+lamina_rentab_mes_202311 = pd.read_csv("data/if_lamina/lamina_fi_rentab_mes_202311.csv",sep=";",encoding='ISO-8859-1')
+csn_lamina_rentab_mes_202311 = lamina_rentab_mes_202311.loc[lamina_rentab_mes_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+
+# rentabilidade ano
+lamina_rentab_ano_202311 = pd.read_csv("data/if_lamina/lamina_fi_rentab_ano_202311.csv",sep=";",encoding='ISO-8859-1')
+csn_lamina_rentab_ano_202311 = lamina_rentab_ano_202311.loc[lamina_rentab_ano_202311['CNPJ_FUNDO']=='68.670.512/0001-07']

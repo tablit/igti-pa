@@ -1,0 +1,41 @@
+-----------------------
+Campo: CNPJ_FUNDO
+-----------------------
+   Descrição : CNPJ do fundo
+   Domínio   : Alfanumérico
+   Tipo Dados: varchar
+   Tamanho   : 20
+
+-----------------------
+Campo: DENOM_SOCIAL
+-----------------------
+   Descrição : Denominação Social
+   Domínio   : Alfanumérico
+   Tipo Dados: varchar
+   Tamanho   : 100
+
+-----------------------
+Campo: DT_COMPTC
+-----------------------
+   Descrição : Data de competência do documento
+   Domínio   : AAAA-MM-DD
+   Tipo Dados: date
+   Tamanho   : 10
+
+-----------------------
+Campo: PR_PL_ATIVO
+-----------------------
+   Descrição : Concentração dos investimentos do fundo por tipo de ativo (em % do PL)
+   Domínio   : Numérico
+   Tipo Dados: numeric
+   Precisão  : 10
+   Scale     : 2
+
+-----------------------
+Campo: TP_ATIVO
+-----------------------
+   Descrição : Tipo de ativo
+   Domínio   : Alfanumérico
+   Tipo Dados: varchar
+   Tamanho   : 250
+
