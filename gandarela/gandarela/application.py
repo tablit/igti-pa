@@ -15,7 +15,7 @@ app.layout = html.Div(children=[
             figure={
                 'data': [
                     {'x': ['left', 'center', 'right'], 'y': [3,7,6], 'type': 'bar', 'name': 'category 1'},
-                    {'x': ['left', 'center', 'right'], 'y': [4,2,5], 'type': 'bar', 'name': 'category 2'},
+                    {'x': ['left', 'center', 'right'], 'y': [4,7,5], 'type': 'bar', 'name': 'category 2'},
                 ],
                 'layout': {
                     'plot_bgcolor': 'lightgray',

@@ -2,7 +2,7 @@
 # [x] Manually download data and upload to folder 
 # [] read csv as pd.DataFrame
 # [] find example FI - CNPJ: 68.670.512/0001-07
-
+# %%
 import pandas as pd
 import csv
 
@@ -37,16 +37,22 @@ csn_daily_report = daily_report.loc[daily_report['CNPJ_FUNDO']=='68.670.512/0001
 # url: https://dados.cvm.gov.br/dados/FI/DOC/LAMINA/DADOS/lamina_fi_202311.zip
 # url_dictionary: https://dados.cvm.gov.br/dados/FI/DOC/LAMINA/META/meta_lamina_fi_txt.zip
 
-lamina_202311 = pd.read_csv("data/if_lamina/lamina_fi_202310.csv",sep=";",encoding='ISO-8859-1',quoting=csv.QUOTE_NONE, engine='python')
-csn_lamina_2023_11 = lamina_202311.loc[lamina_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+lamina_202311_quote_parameter = pd.read_csv("data/if_lamina/lamina_fi_202311.csv",sep=";",encoding='ISO-8859-1',quoting=csv.QUOTE_NONE, engine='python')
+#%%
+lamina_202311 = pd.read_csv("data/if_lamina/lamina_fi_202311.csv",sep=";",encoding='ISO-8859-1')
+
+# csn_lamina_2023_11 = lamina_202311.loc[lamina_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+# 5438
+# 5487 2 linhas
 
 # lamina_carteira_202311 = pd.read_csv("data/if_lamina/lamina_fi_carteira_202311.csv",sep=";",encoding='ISO-8859-1')
 # csn_lamina_carteira_202311 = lamina_carteira_202311.loc[lamina_carteira_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
 
 # # rentabilidade histórica
-# lamina_rentab_mes_202311 = pd.read_csv("data/if_lamina/lamina_fi_rentab_mes_202311.csv",sep=";",encoding='ISO-8859-1')
+lamina_rentab_mes_202311 = pd.read_csv("data/if_lamina/lamina_fi_rentab_mes_202311.csv",sep=";",encoding='ISO-8859-1')
 # csn_lamina_rentab_mes_202311 = lamina_rentab_mes_202311.loc[lamina_rentab_mes_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
 
 # # rentabilidade ano
 # lamina_rentab_ano_202311 = pd.read_csv("data/if_lamina/lamina_fi_rentab_ano_202311.csv",sep=";",encoding='ISO-8859-1')
 # csn_lamina_rentab_ano_202311 = lamina_rentab_ano_202311.loc[lamina_rentab_ano_202311['CNPJ_FUNDO']=='68.670.512/0001-07']
+# %%
