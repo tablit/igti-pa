@@ -8,3 +8,8 @@ def update_output(value):
     # Callback logic
     return new_value
     """
+
+from dash.dependencies import Input, Output
+import app
+
+# Define your callbacks here
