@@ -37,3 +37,7 @@ Advantages of This Structure
     Readability: Each file has a clear purpose, making it easier to understand and modify.
     Reusability: Components like data processing and graph creation can be reused in different parts of the application.
 
+# Running locally
+An .env file must be created at the root directory containing the following env vars:
+AWS_ACCESS_KEY_ID=''
+AWS_SECRET_ACCESS_KEY=''

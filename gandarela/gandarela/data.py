@@ -20,12 +20,38 @@ import pandas as pd
 import csv
 import re
 import os
+from dotenv import load_dotenv
+import boto3
+from io import BytesIO
+
 
 
 def load_data():
+    # Load environment variables from .env file
+    load_dotenv()
+    aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    session = boto3.session.Session(
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
+        )
+    
 
-    # os.chdir("../../")
-    df = pd.read_csv("data/if_lamina/lamina_fi_rentab_mes_202311.csv", sep=";", encoding='ISO-8859-1', quoting=csv.QUOTE_NONE)
+    # Initialize a session using Boto3
+    session = boto3.session.Session()
+
+    # Create an S3 client
+    s3 = session.client('s3')
+    bucket_name='invest-tracker-dash-app'
+    object_key='lamina_fi_rentab_mes_202311.csv'
+    # Fetch the file from S3
+    response = s3.get_object(Bucket=bucket_name, Key=object_key)
+
+    # Read the file content into pandas DataFrame
+    file_content = response['Body'].read()
+    df = pd.read_csv(BytesIO(file_content), encoding='ISO-8859-1', quoting=csv.QUOTE_NONE, sep=";")
+
+    # df = pd.read_csv("data/if_lamina/lamina_fi_rentab_mes_202311.csv", sep=";", encoding='ISO-8859-1', quoting=csv.QUOTE_NONE)
     df['DT_COMPTC'] = pd.to_datetime(df['DT_COMPTC'], format='%Y-%m-%d')
     df['PR_RENTAB_MES'] = pd.to_numeric(df['PR_RENTAB_MES'], errors='coerce')
     df['PR_VARIACAO_INDICE_REFER_MES'] = pd.to_numeric(df['PR_VARIACAO_INDICE_REFER_MES'], errors='coerce')
