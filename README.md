@@ -21,8 +21,6 @@ poetry run python your_script.py
 
 Basic Structure
 
-    app.py: This file initializes the Dash app and contains global settings.
-
     layout.py: Contains the layout of the app (UI components).
 
     callbacks.py: Contains the callbacks for interactivity.
