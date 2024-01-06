@@ -9,6 +9,8 @@ source env/bin/activate
 
 pip install poetry
 
+poetry build
+
 poetry completions bash >> ~/.bash_completion
 
 poetry run python your_script.py
