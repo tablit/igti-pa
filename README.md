@@ -19,7 +19,7 @@ poetry run python your_script.py
 
 # About the app
 
-Basic Structure
+Basic Structure blebous
 
     layout.py: Contains the layout of the app (UI components).
 
