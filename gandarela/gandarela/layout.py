@@ -1,7 +1,8 @@
 
-from dash import html, dcc
+from dash import html, dcc, dash_table
 import data
 import plotly.express as px
+
 
 def create_graph(df):
     # Here you'll use df to create and return your plotly figure
@@ -21,13 +22,28 @@ def create_graph(df):
     return fig
 
 
-def get_layout():
-    df = data.load_data()
-    df = data.prepare_november_data(df)
-    graph = create_graph(df)
-
+def get_layout(lamina,cad):
+    dropdown_options = [{'label': name, 'value': name} for name in lamina['DENOM_SOCIAL'].unique()]
     return html.Div([
-        html.H1("Dash Application"),
-        dcc.Graph(figure=graph),
-        # Other layout elements...
+        html.H1("Comparativo de Fundos"),
+        html.Div(children='Escolha abaixo o fundo a ser analizado'),
+        dcc.Dropdown(
+            id='main-fund-dropdown',
+            options=dropdown_options,
+            value=[],
+            multi = False  # Default value
+        ),
+        dash_table.DataTable(
+            id='main-fund-societary-table'
+            ),
+        html.H2("Performance histórica do fundo"),
+        html.Div(children="Escolha outros fundos para comparar a performance"),
+        dcc.Dropdown(
+            id='comparison-funds-dropdown',
+            options=dropdown_options, #TODO: remove main-fund from list
+            value=[],
+            multi = True  # Default value
+        ),
+        dcc.Graph(id = 'fund-performance-graph')
     ])
+
