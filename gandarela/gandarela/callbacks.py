@@ -39,20 +39,33 @@ def register_callbacks(app,df,cad):
 
         return fig
     
+    
     @app.callback(
-        [Output('main-fund-societary-table','data'), # Update societary table data
-         Output('main-fund-societary-table','columns')], # Update societary table columns
-        Input('main-fund-dropdown','value')
+        Output('main-fund-markdown', 'children'),
+        [Input('main-fund-dropdown', 'value')]
     )
-    def update_table(main_fund):
-        # Logic to filter data based on the selected value
+    def update_markdown(main_fund):
+        # Logic to obtain data based on selected value
         cad_df = cad.copy()
         main_fund_data = cad_df[cad_df['DENOM_SOCIAL'].isin([main_fund])]
 
-        # Prepare the data for the DataTable
-        data = main_fund_data.to_dict('records')
-        columns = [{"name": i, "id": i} for i in main_fund_data.columns]
+        # Select only one fund row
+        fund_info = main_fund_data.iloc[0]  # TODO: filter based on fund situation (SIT column)
 
-        return data, columns
+        # Formatting the fund information in Markdown
+        markdown_content = f"""
+        ## Informações Societárias
+
+        - **Razão Social**: {fund_info['DENOM_SOCIAL']}
+        - **CNPJ**: {fund_info['CNPJ_FUNDO']}
+        - **Data Inicial**: {fund_info['DT_INI_ATIV']}
+        - **Tipo do Fundo**: {fund_info['TP_FUNDO']} 
+        - **Administrador**: {fund_info['ADMIN']}
+        - **Classe**: {fund_info['CLASSE']}
+        - **Classe ANBIMA**: {fund_info['CLASSE_ANBIMA']}
+        - **Gestor**: {fund_info['GESTOR']}
+        """
+
+        return markdown_content
 
 

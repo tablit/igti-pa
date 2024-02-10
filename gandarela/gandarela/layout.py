@@ -33,9 +33,7 @@ def get_layout(lamina,cad):
             value=[],
             multi = False  # Default value
         ),
-        dash_table.DataTable(
-            id='main-fund-societary-table'
-            ),
+        dcc.Markdown(id='main-fund-markdown'),
         html.H2("Performance histórica do fundo"),
         html.Div(children="Escolha outros fundos para comparar a performance"),
         dcc.Dropdown(
