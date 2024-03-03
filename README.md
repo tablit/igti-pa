@@ -15,7 +15,21 @@ poetry completions bash >> ~/.bash_completion
 
 poetry run python your_script.py
 
+# Export poetry setting to requirements.txt
+poetry export -f requirements.txt --output requirements.txt
 
+# Para interagir com o Elastic Beanstalk
+pip install awsebcli
+
+
+# Criação de aplicação no Elastic Beanstalke
+eb init -p python-3.11 gandarela
+
+# Criação de ambiente para a aplicação
+eb create my-dash-env
+
+# Deploy do elastic beanstalk
+eb deploy
 
 # About the app
 
